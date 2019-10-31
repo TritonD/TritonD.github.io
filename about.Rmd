@@ -6,5 +6,7 @@ output:
 ---
 
 
+# Grace (Yunzhi) Qian's resume
 
-![](Grace Yunzhi Qian resume.pdf)
+<img src="R1.jpg" style="width:75%">
+<img src="R2.jpg" style="width:75%">
