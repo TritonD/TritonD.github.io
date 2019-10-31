@@ -6,5 +6,5 @@ output:
 ---
 
 
-# Resume
+
 ![](Grace Yunzhi Qian resume.pdf)
