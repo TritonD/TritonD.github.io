@@ -14,7 +14,7 @@ library(p8105.datasets)
 library(plotly)
 ```
 
-# Import dataset
+
 ```{r}
 data("rest_inspec")
 ```
@@ -67,5 +67,9 @@ rest_sample %>%
   count(cuisine_description)%>%
   mutate(cuisine_description = fct_reorder(cuisine_description, n)) %>% 
   plot_ly(x = ~cuisine_description, y = ~n, type = "bar")
+```
+
+```{r}
+rmarkdown::render("flexdashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
 ```
 
