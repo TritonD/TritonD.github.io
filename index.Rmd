@@ -8,9 +8,9 @@ output:
 ---
 
 # Introduction
-Hello! This is Grace (Yunzhi) Qian's personal website.I am a Biostatistics graduate student at Columbia University. Foodie, corgi-lover and enjoy exploring new things!
+Hello! This is Grace (Yunzhi) Qian's personal website.I am a Biostatistics graduate student at Columbia University Mailman School of Public Health. Foodie, corgi-lover and enjoy exploring new things!
 
-You can learn more about me [here](about.html)
+You can learn more about my professional experience [here](about.html)
 
 
 # Linkedin

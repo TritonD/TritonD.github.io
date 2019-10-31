@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>flexdashboard</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="mailto:&lt;yunzhiqian2013@gmail.com&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/TritonD/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">flexdashboard</h1>
+
+</div>
+
+
+<p>Import dataset</p>
+<pre class="r"><code>data(&quot;rest_inspec&quot;)</code></pre>
+<pre class="r"><code>set.seed(1)
+rest_sample = 
+  rest_inspec %&gt;% 
+  filter(!is.na(score), 
+    boro == &quot;MANHATTAN&quot;)%&gt;%
+  select(
+    dba, action, cuisine_description,score, record_date,grade,critical_flag,inspection_type,violation_code) %&gt;%
+   
+  sample_n(1200)</code></pre>
+<div id="column" class="section level2" data-width="650">
+<h2>Column</h2>
+<div id="chart-a-boxplot-of-score-distribution-among-cuisine-categories" class="section level3">
+<h3>Chart A: Boxplot of score distribution among cuisine categories</h3>
+<pre class="r"><code>rest_sample %&gt;%
+  filter(
+    cuisine_description %in% c(&quot;Italian&quot;,&quot;Chinese&quot;,&quot;American&quot;, &quot;Mexican&quot;,&quot;Bakery&quot;,&quot;French&quot;,&quot;Japanese&quot;,&quot;Seafood&quot;
+  ))%&gt;%
+  mutate(cuisine_description = fct_reorder(cuisine_description, score)) %&gt;% 
+  plot_ly(x = ~cuisine_description, y = ~score, color = ~cuisine_description, type = &quot;box&quot;,colors = &quot;Set2&quot;)</code></pre>
+<div id="htmlwidget-40d94c0a0ba580cabaf3" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-40d94c0a0ba580cabaf3">{"x":{"visdat":{"24105e564123":["function () ","plotlyVisDat"]},"cur_data":"24105e564123","attrs":{"24105e564123":{"x":{},"y":{},"color":{},"colors":"Set2","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"cuisine_description","type":"category","categoryorder":"array","categoryarray":["Bakery","Seafood","American","French","Mexican","Italian","Japanese","Chinese"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"score"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"fillcolor":"rgba(102,194,165,0.5)","x":["Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery","Bakery"],"y":[9,24,12,18,0,25,22,12,13,4,11,19,19,25,7,7,5,11,26,24,10,13,2,11,9,6,11,19,13,11,12,11],"type":"box","name":"Bakery","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(252,141,98,0.5)","x":["Seafood","Seafood","Seafood","Seafood","Seafood","Seafood","Seafood","Seafood","Seafood"],"y":[24,12,61,12,44,7,37,12,5],"type":"box","name":"Seafood","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(141,160,203,0.5)","x":["American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American","American"],"y":[12,85,12,25,9,10,13,23,7,9,24,11,25,9,22,7,16,13,25,2,19,44,13,9,7,24,35,7,10,21,34,7,73,15,18,11,24,7,12,41,12,43,13,12,12,12,25,14,9,12,12,19,35,12,3,22,25,9,12,9,12,48,5,31,10,19,13,19,13,11,10,12,57,50,4,23,11,20,7,6,15,4,12,64,56,22,28,2,22,19,16,5,27,12,11,17,13,36,21,17,28,9,21,3,51,24,10,43,7,10,11,7,10,12,9,17,25,37,9,27,17,0,10,17,23,36,9,11,24,10,13,16,14,28,12,11,2,9,16,31,20,21,8,40,12,8,8,13,0,34,28,10,12,10,19,22,12,13,23,55,13,34,30,12,15,43,24,27,23,27,9,16,35,37,50,35,11,20,12,11,12,17,12,9,17,46,35,11,19,13,13,21,30,24,12,21,12,13,27,9,7,7,5,24,5,13,10,5,10,12,9,13,9,42,12,11,8,6,25,22,20,13,20,31,24,5,11,8,10,9,12,5,9,19,14,10,4,0,21,47,8,33,20,27,37,26,14,11,14,10,15,23,18,9,42,12,68,0,26,17,15,12,52,34,88,21,13,2,26,12,13,17,16,2,13,27,17,8,12,22,2,13,8,11,36,10,11,28,14,40,4,12,12,3,4,18,10,15,29,17,11,8,10,9,8,44,11,53,19,17,2,32,11,19,9,7,12,10,44,35,26,17,7,9,13,14,28,19,7,5,12,14,47,12,25,2,12,11],"type":"box","name":"American","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(231,138,195,0.5)","x":["French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French","French"],"y":[11,17,14,12,10,43,19,10,13,12,22,20,9,-1,11,7,9,24,10,10,12,13,17,27,43,17,13,20,26,21,24,13,9],"type":"box","name":"French","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"line":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(166,216,84,0.5)","x":["Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican"],"y":[42,11,13,18,22,41,7,12,10,11,12,13,19,13,11,16,7,15,23,27,7,12,15,21,30,32,16,11,7,20,11,9,11,31,24,31,9,30,11,11,18,11,12,14,10,30],"type":"box","name":"Mexican","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"line":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,217,47,0.5)","x":["Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian","Italian"],"y":[17,22,9,33,17,12,7,26,12,26,7,17,7,23,43,9,13,20,13,11,8,15,15,9,40,21,4,4,10,20,21,27,30,19,29,16,45,35,2,11,51,20,10,9,35,7,17,25,12,8,12,4,7,12,2,9,20,14,30,35,17,10,46,27,40,21,8,7,12,10,30,16,35,25,12,13,11,12,13],"type":"box","name":"Italian","marker":{"color":"rgba(255,217,47,1)","line":{"color":"rgba(255,217,47,1)"}},"line":{"color":"rgba(255,217,47,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(229,196,148,0.5)","x":["Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese","Japanese"],"y":[11,10,15,17,28,10,13,18,14,33,4,27,12,24,11,20,23,20,47,7,15,64,4,4,23,54,14,35,9,58,18,10,14,13,33,19,13,13,23,17,18,9,2,27,20,16,21,42,21,19,29,11,12,11,26,6,12,9,13,12,15,51,17,7],"type":"box","name":"Japanese","marker":{"color":"rgba(229,196,148,1)","line":{"color":"rgba(229,196,148,1)"}},"line":{"color":"rgba(229,196,148,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(179,179,179,0.5)","x":["Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese"],"y":[21,18,13,13,13,32,31,13,18,11,27,10,26,12,13,41,10,20,13,43,23,3,23,28,12,36,18,38,7,42,15,9,46,68,40,39,13,9,16,28,50,29,12,7,12,29,23,25,9,7,11,8,22,12,32,29,30,21,24,12,33,21,7,32,35,4,16,12,32,12,17,31,11,21,12,14,20,16,12,19,44,7,4,42,18,53,22,24,30,14,73,16,18,27,32,12,23],"type":"box","name":"Chinese","marker":{"color":"rgba(179,179,179,1)","line":{"color":"rgba(179,179,179,1)"}},"line":{"color":"rgba(179,179,179,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="column-1" class="section level2" data-width="350">
+<h2>Column</h2>
+<div id="chart-b" class="section level3">
+<h3>Chart B</h3>
+<pre class="r"><code>rest_sample %&gt;%
+  plot_ly(
+    x = ~grade, y = ~score, type = &quot;violin&quot;,
+    color = ~grade, alpha = 0.5)</code></pre>
+<pre><code>## Warning: Ignoring 549 observations</code></pre>
+<div id="htmlwidget-bd45ebf6ce96f26c9283" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bd45ebf6ce96f26c9283">{"x":{"visdat":{"24101474591c":["function () ","plotlyVisDat"]},"cur_data":"24101474591c","attrs":{"24101474591c":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"violin"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"grade","type":"category","categoryorder":"array","categoryarray":["A","B","C","Not Yet Graded","P","Z"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"score"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"fillcolor":"rgba(102,194,165,0.5)","x":["A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A","A"],"y":[12,12,12,12,9,10,11,10,13,13,10,10,13,9,7,13,13,9,11,5,11,13,9,13,11,12,12,13,9,10,7,9,11,7,4,6,13,3,10,10,12,9,9,7,7,12,7,2,12,9,13,7,12,10,13,7,11,7,7,12,12,12,13,12,12,10,10,12,13,7,9,12,12,12,10,12,4,13,13,11,9,7,12,4,6,12,12,3,10,10,6,10,3,9,12,10,12,13,12,8,12,10,13,6,5,10,9,13,2,13,8,10,11,10,10,12,4,5,11,7,4,12,12,13,9,12,10,9,13,13,9,8,13,11,11,11,2,11,7,7,9,12,7,7,5,11,12,11,4,12,7,11,13,7,7,9,13,3,8,7,12,8,4,12,11,7,10,7,8,10,12,9,9,12,10,6,6,10,12,9,13,11,9,9,7,4,12,7,12,4,7,9,12,12,10,12,13,11,11,7,10,9,13,9,13,9,8,3,12,13,11,13,2,9,5,11,4,13,8,12,8,8,13,0,7,12,10,10,10,13,9,11,3,5,9,12,12,13,4,8,13,13,9,9,12,7,11,10,12,7,12,5,9,12,13,8,4,5,11,9,2,12,7,7,11,12,10,11,13,7,12,12,11,12,2,12,12,10,12,13,11,11,10,10,2,11,11,7,10,12,13,9,2,11,7,12,13,13,12,12,9,11,13,10,13,4,9,6,8,5,9,9,7,11,7,13,12,12,11,10,9,7,13,12,5,13,7,10,4,5,10,10,12,13,9,10,9,12,8,11,6,9,11,10,20,12,13,9,13,8,12,5,12,10,9,11,3,5,8,12,4,10,7,7,8,10,9,12,5,12,10,9,11,10,4,13,0,13,9,11,8,11,12,11,13,9,2,11,13,11,4,10,12,10,10,9,13,10,12,0,2,12,10,12,12,13,11,12,8,13,13,11,7,11,13,5,13,2,11,11,12,11,11,13,12,10,12,9,13,12,10,10,12,9,8,12,8,2,7,7,8,11,9,6,11,9,12,11,11,12,10,11,13,11,4,12,12,2,3,4,10,6,8,10,10,10,10,11,12,8,9,12,10,9,8,9,2,12,13,13,7,12,12,10,11,9,11,7,12,10,5,12,12,11,11,12,5,13,7,2,13,11,9,7,5,12,13,12,10,12,12,13,9,2,2,10,9,9,12,11,11],"type":"violin","name":"A","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(252,141,98,0.5)","x":["B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B"],"y":[26,25,21,24,17,24,14,25,17,17,15,27,26,17,24,18,15,19,24,23,23,27,20,16,19,24,22,24,20,22,22,20,15,17,17,17,16,15,16,25,22,14,17,24,20,19,21,19,26,19,26,22,17,24,26,24,27,20,16,20,21,17,17,21,26,14,22,20,15,20,21,17,17,27,14,17,18,22,26,14,21,14,23,17,20],"type":"violin","name":"B","marker":{"color":"rgba(252,141,98,0.5)","line":{"color":"rgba(252,141,98,1)"}},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(141,160,203,0.5)","x":["C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C"],"y":[9,56,57,38,38,40,30,50,40,37,48,60,33,47,42,29,33,28,29,9,4,30,28,40],"type":"violin","name":"C","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(231,138,195,0.5)","x":["Not Yet Graded","Not Yet Graded"],"y":[30,31],"type":"violin","name":"Not Yet Graded","marker":{"color":"rgba(231,138,195,0.5)","line":{"color":"rgba(231,138,195,1)"}},"line":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(166,216,84,0.5)","x":["P","P","P","P"],"y":[10,0,2,8],"type":"violin","name":"P","marker":{"color":"rgba(166,216,84,0.5)","line":{"color":"rgba(166,216,84,1)"}},"line":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(255,217,47,0.5)","x":["Z","Z","Z","Z","Z","Z","Z","Z","Z","Z","Z","Z","Z","Z","Z"],"y":[22,36,2,22,26,25,23,18,21,20,19,23,18,17,27],"type":"violin","name":"Z","marker":{"color":"rgba(255,217,47,0.5)","line":{"color":"rgba(255,217,47,1)"}},"line":{"color":"rgba(255,217,47,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="chart-c" class="section level3">
+<h3>Chart C</h3>
+<pre class="r"><code>rest_sample %&gt;%
+  count(cuisine_description)%&gt;%
+  mutate(cuisine_description = fct_reorder(cuisine_description, n)) %&gt;% 
+  plot_ly(x = ~cuisine_description, y = ~n, type = &quot;bar&quot;)</code></pre>
+<div id="htmlwidget-91abc79541b55d14307a" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-91abc79541b55d14307a">{"x":{"visdat":{"24106cc055e":["function () ","plotlyVisDat"]},"cur_data":"24106cc055e","attrs":{"24106cc055e":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"cuisine_description","type":"category","categoryorder":"array","categoryarray":["Australian","Brazilian","Caribbean","Chilean","Continental","Eastern European","Iranian","Polynesian","Soups","African","Bangladeshi","Chinese/Cuban","Moroccan","Polish","Russian","Salads","Soups & Sandwiches","German","Hotdogs","Tapas","Barbecue","Bottled beverages, including water, sodas, juices, etc.","Greek","Jewish/Kosher","Soul Food","Tex-Mex","Turkish","Juice, Smoothies, Fruit Salads","Other","Steak","Middle Eastern","Chinese/Japanese","Vegetarian","Seafood","Bagels/Pretzels","Vietnamese/Cambodian/Malaysia","Chicken","Hamburgers","Mediterranean","Asian","Irish","Korean","Ice Cream, Gelato, Yogurt, Ices","Sandwiches/Salads/Mixed Buffet","Donuts","Delicatessen","Pizza/Italian","Sandwiches","Spanish","Latin (Cuban, Dominican, Puerto Rican, South & Central American)","Indian","Thai","Pizza","Bakery","French","Mexican","CafÃ©/Coffee/Tea","Japanese","Italian","Chinese","American"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"n"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":["African","American","Asian","Australian","Bagels/Pretzels","Bakery","Bangladeshi","Barbecue","Bottled beverages, including water, sodas, juices, etc.","Brazilian","CafÃ©/Coffee/Tea","Caribbean","Chicken","Chilean","Chinese","Chinese/Cuban","Chinese/Japanese","Continental","Delicatessen","Donuts","Eastern European","French","German","Greek","Hamburgers","Hotdogs","Ice Cream, Gelato, Yogurt, Ices","Indian","Iranian","Irish","Italian","Japanese","Jewish/Kosher","Juice, Smoothies, Fruit Salads","Korean","Latin (Cuban, Dominican, Puerto Rican, South & Central American)","Mediterranean","Mexican","Middle Eastern","Moroccan","Other","Pizza","Pizza/Italian","Polish","Polynesian","Russian","Salads","Sandwiches","Sandwiches/Salads/Mixed Buffet","Seafood","Soul Food","Soups","Soups & Sandwiches","Spanish","Steak","Tapas","Tex-Mex","Thai","Turkish","Vegetarian","Vietnamese/Cambodian/Malaysia"],"y":[2,338,14,1,10,32,2,4,4,1,62,1,11,1,97,2,7,1,18,16,1,33,3,4,12,3,15,29,1,14,79,64,4,5,14,26,13,46,6,2,5,31,19,2,1,2,2,21,15,9,4,1,2,24,5,3,4,30,4,8,10],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

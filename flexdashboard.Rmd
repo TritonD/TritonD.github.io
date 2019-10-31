@@ -1,0 +1,71 @@
+---
+title: "flexdashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(viridis)
+library(p8105.datasets)
+library(plotly)
+```
+
+Import dataset
+```{r}
+data("rest_inspec")
+```
+
+
+```{r}
+set.seed(1)
+rest_sample = 
+  rest_inspec %>% 
+  filter(!is.na(score), 
+    boro == "MANHATTAN")%>%
+  select(
+    dba, action, cuisine_description,score, record_date,grade,critical_flag,inspection_type,violation_code) %>%
+   
+  sample_n(1200)
+```
+
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A: Boxplot of score distribution among cuisine categories
+
+```{r}
+rest_sample %>%
+  filter(
+    cuisine_description %in% c("Italian","Chinese","American", "Mexican","Bakery","French","Japanese","Seafood"
+  ))%>%
+  mutate(cuisine_description = fct_reorder(cuisine_description, score)) %>% 
+  plot_ly(x = ~cuisine_description, y = ~score, color = ~cuisine_description, type = "box",colors = "Set2")
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B: A violin graph describe score distribution in grade groups
+
+```{r}
+rest_sample %>%
+  plot_ly(
+    x = ~grade, y = ~score, type = "violin",
+    color = ~grade, alpha = 0.5)
+```
+
+### Chart C: Barchart of cuisine type frequency
+
+```{r}
+rest_sample %>%
+  count(cuisine_description)%>%
+  mutate(cuisine_description = fct_reorder(cuisine_description, n)) %>% 
+  plot_ly(x = ~cuisine_description, y = ~n, type = "bar")
+```
+
