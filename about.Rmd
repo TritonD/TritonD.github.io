@@ -8,5 +8,4 @@ output:
 
 # Grace (Yunzhi) Qian's resume
 
-<img src="R1.jpg" style="width:75%">
-<img src="R2.jpg" style="width:75%">
+<img src="Resume.jpg" style="width:75%">
