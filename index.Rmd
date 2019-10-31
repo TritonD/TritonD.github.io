@@ -7,15 +7,17 @@ output:
     theme: cerulean
 ---
 
+# Introduction
+Hello! This is Grace (Yunzhi) Qian's personal website.I am a Biostatistics graduate student at Columbia University. Foodie, corgi-lover and enjoy exploring new things!
+
 You can learn more about me [here](about.html)
 
-# Check my Linkedin profile out! [linkedin](https://www.linkedin.com/in/grace-yunzhi-qian)
+
+# Linkedin
+Check my Linkedin profile out! [linkedin](https://www.linkedin.com/in/grace-yunzhi-qian)
 
 
 
-
-
-# Here's me
 
 
 
