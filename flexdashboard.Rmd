@@ -14,7 +14,7 @@ library(p8105.datasets)
 library(plotly)
 ```
 
-Import dataset
+# Import dataset
 ```{r}
 data("rest_inspec")
 ```
