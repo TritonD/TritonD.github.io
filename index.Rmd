@@ -7,13 +7,15 @@ output:
     theme: cerulean
 ---
 
-
+You can learn more about me [here](about.html)
 
 # Check my Linkedin profile out! [linkedin](https://www.linkedin.com/in/grace-yunzhi-qian)
 
 
 
-#Here's me
+
+
+# Here's me
 
 
 
