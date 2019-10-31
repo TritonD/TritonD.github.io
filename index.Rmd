@@ -1,5 +1,5 @@
 ---
-title: "My awesome website"
+title: "Yunzhi's personal website"
 output: 
   html_document:
     toc: true
@@ -7,14 +7,13 @@ output:
     theme: cerulean
 ---
 
-# This is Yunzhi's personal website
-
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
 
 
-Check my Linkedin profile out! [linkedin](https://www.linkedin.com/in/grace-yunzhi-qian)
+# Check my Linkedin profile out! [linkedin](https://www.linkedin.com/in/grace-yunzhi-qian)
 
-Here's me
+
+
+#Here's me
 
 
 
